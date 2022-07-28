@@ -2,21 +2,29 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Memory Game | Login</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="">
+
   <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/login.css">
+  <link rel="stylesheet" href="./assets/css/game.css">
+
+  <script defer scr="./assets/js/login.js"></script>
 </head>
 
 <body>
 
-  <form class="lorgin_form">
-    <div class="login_header">
-      <img src="./assets/images/brain.png">
-      <h1>Memory Game</h1>
-    </div>
-  </form>
+  <main>
+    <form class="login_form">
+      <div class="login_header">
+        <img src="./assets/images/brain.png" alt="brain icon">
+        <h1>Memory Game</h1>
+      </div>
+      <input type="text" placeholder="Name" class="login_input">
+      <button type="submit" class="login_button">Play</button>
+    </form>
+  </main>
 
 </body>
 
