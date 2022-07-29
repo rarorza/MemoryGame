@@ -1,5 +1,8 @@
 const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
+// Array with the name of the cards
 const characters = [
   'beth',
   'jerry',
@@ -13,15 +16,27 @@ const characters = [
   'scroopy',
 ];
 
+// Insert div tag and class dynamically in html
 const createElement = (tag, className) => {
   const element = document.createElement(tag);
   element.className = className;
   return element;
 }
 
+// Check if the game is over
+const checkEndGame = () => {
+  const disabledCards = document.querySelectorAll('.disabled-card');
+
+  if (disabledCards.length === 20) {
+    clearInterval(this.loop);
+    alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML} segundos!!`);
+  }
+}
+
 let firstCard = '';
 let secondCard = '';
 
+// Check if the first card is the same as the second selected by the player
 const checkCards = () => {
   const firstCharacter = firstCard.getAttribute('data-character');
   const secondCharacter = secondCard.getAttribute('data-character');
@@ -33,6 +48,8 @@ const checkCards = () => {
 
     firstCard = '';
     secondCard = '';
+
+    checkEndGame();
 
   } else {
     setTimeout(() => {
@@ -47,6 +64,7 @@ const checkCards = () => {
   }
 }
 
+//
 const revealCard = ({ target }) => {
 
   if (target.parentNode.className.includes('reveal-card')) {
@@ -83,6 +101,7 @@ const createCard = (character) => {
   return card;
 }
 
+// Carrega a tela do jogo
 const loadGame = () => {
   const duplicateCharacters = [...characters, ...characters];
   const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
@@ -95,4 +114,21 @@ const loadGame = () => {
   });
 }
 
-loadGame();
+const startTimer = () => {
+
+  this.loop = setInterval(() => {
+    const currentTime = +timer.innerHTML;
+    timer.innerHTML = currentTime + 1;
+  }, 1000);
+
+}
+
+window.onload = () => {
+  spanPlayer.innerHTML = localStorage.getItem('player');
+  startTimer();
+  loadGame();
+}
+
+// new features
+// botão para reiniciar o jogo
+// salvar o tempo de jogo e o nome do player no localstorage para criar uma tela de rank 
