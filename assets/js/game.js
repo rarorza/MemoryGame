@@ -28,14 +28,17 @@ const checkCards = () => {
 
   if (firstCharacter === secondCharacter) {
 
-    firstCard.classList.add('disabled_card');
-    secondCard.classList.add('disabled_card');
+    firstCard.firstChild.classList.add('disabled-card');
+    secondCard.firstChild.classList.add('disabled-card');
+
+    firstCard = '';
+    secondCard = '';
 
   } else {
     setTimeout(() => {
 
-      firstCard.classList.remove('reveal_card');
-      secondCard.classList.remove('reveal_card');
+      firstCard.classList.remove('reveal-card');
+      secondCard.classList.remove('reveal-card');
 
       firstCard = '';
       secondCard = '';
@@ -46,19 +49,21 @@ const checkCards = () => {
 
 const revealCard = ({ target }) => {
 
-  if (target.parentNode.className.includes('reveal_card')) {
+  if (target.parentNode.className.includes('reveal-card')) {
     return;
   }
 
   if (firstCard === '') {
 
-    target.parentNode.classList.add('reveal_card');
+    target.parentNode.classList.add('reveal-card');
     firstCard = target.parentNode;
 
   } else if (secondCard === '') {
 
-    target.parentNode.classList.add('reveal_card');
+    target.parentNode.classList.add('reveal-card');
     secondCard = target.parentNode;
+
+    checkCards();
   }
 }
 
