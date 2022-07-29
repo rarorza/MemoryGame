@@ -64,27 +64,28 @@ const checkCards = () => {
   }
 }
 
-//
+// Inserts a target on mouse click, identifying which card the player has chosen
 const revealCard = ({ target }) => {
 
   if (target.parentNode.className.includes('reveal-card')) {
-    return;
+    return; // If the chosen card already has the 'reveal-card' class, close the if
   }
 
   if (firstCard === '') {
 
     target.parentNode.classList.add('reveal-card');
-    firstCard = target.parentNode;
+    firstCard = target.parentNode; // Inserts the 'reveal-card' class into the first chosen card
 
   } else if (secondCard === '') {
 
     target.parentNode.classList.add('reveal-card');
-    secondCard = target.parentNode;
+    secondCard = target.parentNode; // Inserts the 'reveal-card' class into the second chosen card
 
     checkCards();
   }
 }
 
+// Create the card
 const createCard = (character) => {
   const card = createElement('div', 'card');
   const front = createElement('div', 'face front');
@@ -101,7 +102,7 @@ const createCard = (character) => {
   return card;
 }
 
-// Carrega a tela do jogo
+// Load the game screen
 const loadGame = () => {
   const duplicateCharacters = [...characters, ...characters];
   const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
@@ -114,6 +115,7 @@ const loadGame = () => {
   });
 }
 
+// Start the timer
 const startTimer = () => {
 
   this.loop = setInterval(() => {
@@ -123,12 +125,13 @@ const startTimer = () => {
 
 }
 
+// Show player name stored in local storage
 window.onload = () => {
   spanPlayer.innerHTML = localStorage.getItem('player');
-  startTimer();
-  loadGame();
+  startTimer(); // Run timer
+  loadGame(); // Run game
 }
 
-// new features
-// botão para reiniciar o jogo
-// salvar o tempo de jogo e o nome do player no localstorage para criar uma tela de rank 
+// Future features
+// Button to restart the game
+// Store game time and create a rank screen
